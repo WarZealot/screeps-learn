@@ -1,16 +1,22 @@
 /**
  * Created by Konstantin on 18.03.2016.
  */
-var harvester = require('harvester');
+
+var harvesterController = require('harvesterController');
+var spawnController = require('spawnController');
 
 module.exports.loop = function () {
 
+    for(var name in Game.spawns) {
+        var spawn = Game.spawns[name];
+       spawnController(spawn);
+    }
+
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        console.log("cool");
 
         if(creep.memory.role == 'harvester') {
-            harvester(creep);
+            harvesterController(creep);
         }
 
         if(creep.memory.role == 'builder') {

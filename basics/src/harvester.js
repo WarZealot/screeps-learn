@@ -8,17 +8,16 @@
  * You can import it from another modules like this:
  * var mod = require('harvester'); // -> 'a thing'
  */
-module.exports = function (creep) {
+module.exports = function (spawn) {
+    var type = 'harvester';
+    var body = [MOVE, WORK, CARRY];
+    var name = spawn.name + "_" + type + "_" + spawn.memory.harvesters.length;
+    var memory = {role: type, creator: spawn};
 
-    if(creep.carry.energy < creep.carryCapacity) {
-        var sources = creep.room.find(FIND_SOURCES);
-        if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(sources[0]);
-        }
-    }
-    else {
-        if(creep.transfer(Game.spawns.Spawn1, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(Game.spawns.Spawn1);
-        }
+    if (spawn.canCreateCreep(body, name)) {
+        var creep = spawn.createCreep(body, name, memory);
+        spawn.memory.harvesters.push(creep);
+    } else {
+        //TODO
     }
 }
