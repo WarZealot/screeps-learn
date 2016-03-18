@@ -17,8 +17,9 @@ module.exports = function (creep) {
         }
     }
     else {
-        if(creep.transfer(creep.memory.creator, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(creep.memory.creator);
+        var target = Game.spawns[creep.memory.creatorName];
+        if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(target);
         }
     }
 }

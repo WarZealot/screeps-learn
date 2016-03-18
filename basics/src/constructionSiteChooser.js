@@ -17,7 +17,7 @@ module.exports = function (room) {
         var path = room.findPath(spawn.pos, source.pos, options);
 
         for (var j = 0; j < path.length; j++) {
-            room.createConstructionSite(path[j], STRUCTURE_ROAD);
+            room.createConstructionSite(path[j].x, path[j].y, STRUCTURE_ROAD);
         }
     }
 }

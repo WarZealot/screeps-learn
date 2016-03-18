@@ -12,10 +12,10 @@ module.exports = function (spawn) {
     var type = 'harvester';
     var body = [MOVE, WORK, CARRY];
     var name = spawn.name + "_" + type + "_" + spawn.memory.harvesters.length;
-    var memory = {role: type, creator: spawn};
+    var memory = {role: type, creatorName: spawn.name};
 
     if (spawn.canCreateCreep(body, name) == OK) {
         var creep = spawn.createCreep(body, name, memory);
-        spawn.memory.harvesters.push(creep);
-    } 
+        spawn.memory.harvesters.push(creep.name);
+    }
 }

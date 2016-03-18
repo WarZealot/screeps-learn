@@ -11,8 +11,9 @@
 module.exports = function (creep) {
 
     if(creep.carry.energy == 0) {
-        if(creep.memory.creator.transferEnergy(creep) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(creep.memory.creator);
+        var target = Game.spawns[creep.memory.creatorName];
+        if(target.transferEnergy(creep) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(target);
         }
     }
     else {

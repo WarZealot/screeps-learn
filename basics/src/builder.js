@@ -12,10 +12,10 @@ module.exports = function (spawn) {
     var type = 'builder';
     var body = [MOVE, WORK, WORK, CARRY];
     var name = spawn.name + "_" + type + "_" + spawn.memory.builders.length;
-    var memory = {role: type, creator: spawn};
+    var memory = {role: type, creatorName: spawn.name};
 
     if (spawn.canCreateCreep(body, name) == OK) {
         var creep = spawn.createCreep(body, name, memory);
-        spawn.memory.builders.push(creep);
+        spawn.memory.builders.push(creep.name);
     } 
 }
