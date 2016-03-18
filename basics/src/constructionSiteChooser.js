@@ -16,7 +16,7 @@ module.exports = function (room) {
         var source = sources[i];
         var path = room.findPath(spawn.pos, source.pos, options);
 
-        for (j = 0; j < path.length; j++) {
+        for (var j = 0; j < path.length; j++) {
             room.createConstructionSite(path[j], STRUCTURE_ROAD);
         }
     }
