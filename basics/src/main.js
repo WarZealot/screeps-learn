@@ -4,12 +4,19 @@
 
 var harvesterController = require('harvesterController');
 var spawnController = require('spawnController');
+var builderController = require('builderController');
+var constructionSiteChooser = require('constructionSiteChooser');
 
 module.exports.loop = function () {
 
+    for(var name in Game.rooms) {
+        var room = Game.rooms[name];
+        constructionSiteChooser(room);
+    }
+
     for(var name in Game.spawns) {
         var spawn = Game.spawns[name];
-       spawnController(spawn);
+        spawnController(spawn);
     }
 
     for(var name in Game.creeps) {
@@ -20,20 +27,7 @@ module.exports.loop = function () {
         }
 
         if(creep.memory.role == 'builder') {
-
-            if(creep.carry.energy == 0) {
-                if(Game.spawns.Spawn1.transferEnergy(creep) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(Game.spawns.Spawn1);
-                }
-            }
-            else {
-                var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-                if(targets.length) {
-                    if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(targets[0]);
-                    }
-                }
-            }
+            builderController(creep);
         }
 
         if(creep.memory.role == 'guard') {
