@@ -12,7 +12,7 @@ module.exports = function (spawn) {
 
     if(spawn.memory.harvesters.length < 4){
         harvester(spawn);
-    }else if(spawn.memory.harvesters.length < 2){
+    }else if(spawn.memory.builders.length < 2){
         builder(spawn);
     }
 }

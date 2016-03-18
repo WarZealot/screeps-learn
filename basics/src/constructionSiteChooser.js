@@ -9,6 +9,10 @@
  * var mod = require('harvester'); // -> 'a thing'
  */
 module.exports = function (room) {
+    if(room.memory.roadsChosen){
+        return;
+    }
+
     var options = {ignoreCreeps: true, ignoreRoads: true};
     var sources = room.find(FIND_SOURCES);
     var spawn = room.find(FIND_MY_SPAWNS)[0];
@@ -20,5 +24,6 @@ module.exports = function (room) {
             room.createConstructionSite(path[j].x, path[j].y, STRUCTURE_ROAD);
         }
     }
+    room.memory.roadsChosen = true;
 }
 
