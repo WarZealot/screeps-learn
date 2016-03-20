@@ -8,11 +8,11 @@
  * You can import it from another modules like this:
  * var mod = require('harvester'); // -> 'a thing'
  */
-module.exports = function (spawn, source) {
-    var type = 'harvester';
-    var body = [MOVE, MOVE, WORK, CARRY];
-    var name = spawn.name + "_" + type + "_" + spawn.memory.harvesters.length;
-    var memory = {role: type, creatorName: spawn.name, sourceName: source.name};
+module.exports = function (spawn) {
+    var type = 'warrior';
+    var body = [MOVE, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH];
+    var name = spawn.name + "_" + type + "_" + spawn.memory.warriors.length;
+    var memory = {role: type, creatorName: spawn.name};
 
     while (spawn.canCreateCreep(body, name) == ERR_NAME_EXISTS) {
         name += '0';
@@ -20,7 +20,7 @@ module.exports = function (spawn, source) {
 
     if (spawn.canCreateCreep(body, name) == OK) {
         var creep = spawn.createCreep(body, name, memory);
-        spawn.memory.harvesters.push(creep.name);
-        Memory.statistics.economy = Memory.statistics.economy + creep.getCost();
+        spawn.memory.warriors.push(creep.name);
+        Memory.statistics.military = Memory.statistics.military + creep.getCost();
     }
 }
