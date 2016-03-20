@@ -12,7 +12,7 @@
 var getCreepCost = require('creepCostCalculator');
 module.exports = function (spawn) {
     var type = 'builder';
-    var body = [MOVE, WORK, WORK, CARRY];
+    var body = [WORK, CARRY, WORK, MOVE];
     var name = spawn.name + "_" + type + "_" + spawn.memory.builders.length;
     var memory = {role: type, creatorName: spawn.name};
 

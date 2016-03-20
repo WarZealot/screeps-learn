@@ -5,7 +5,7 @@ var getCreepCost = require('creepCostCalculator');
 
 module.exports = function (spawn) {
     var type = 'warrior';
-    var body = [MOVE, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH];
+    var body = [TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, MOVE];
     var name = spawn.name + "_" + type + "_" + spawn.memory.warriors.length;
     var memory = {role: type, creatorName: spawn.name};
 

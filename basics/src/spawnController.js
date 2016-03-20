@@ -42,7 +42,9 @@ module.exports = function (spawn) {
         var distance = getDistance(source);
 
         //very simple logic
-        if (harvesters.length >= adjacent + distance / 3) {
+        console.log("Required harvesters: " + (adjacent + distance / 3));
+        console.log("Currently: " + harvesters.length);
+        if (harvesters.length >= (adjacent + distance / 3)) {
             Memory.sources.satisfied.push(source.id);
             return true;
         }
