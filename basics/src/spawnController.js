@@ -60,7 +60,7 @@ module.exports = function (spawn) {
                 var pos = new RoomPosition(sX + i, sY + j, sName);
                 var terrain = pos.lookFor("terrain");
 
-                if (terrain.length && terrain[0] != "wall") {
+                if (terrain.length && terrain[0] == "plain") {
                     sum++;
                 }
             }
@@ -70,7 +70,7 @@ module.exports = function (spawn) {
 
     function getHarvesters(source) {
         var harvesters = spawn.memory.harvesters.filter(function (harvesterName) {
-            if (Memory.creeps[harvesterName].sourceId = source.id) {
+            if (Memory.creeps[harvesterName].sourceId == source.id) {
                 return true;
             }
             return false;
