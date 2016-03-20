@@ -19,6 +19,11 @@ module.exports.loop = function () {
     
     //needs to be done every tick
     initGlobalMethods();
+    for(var i in Memory.creeps) {
+        if(!Game.creeps[i]) {
+            delete Memory.creeps[i];
+        }
+    }
 
     for (var name in Game.rooms) {
         var room = Game.rooms[name];

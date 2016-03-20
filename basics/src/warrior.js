@@ -1,13 +1,8 @@
 /**
  * Created by Konstantin on 18.03.2016.
  */
-/*
- * Module code goes here. Use 'module.exports' to export things:
- * module.exports = 'a thing';
- *
- * You can import it from another modules like this:
- * var mod = require('harvester'); // -> 'a thing'
- */
+var getCreepCost = require('creepCostCalculator');
+
 module.exports = function (spawn) {
     var type = 'warrior';
     var body = [MOVE, ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH];
@@ -21,6 +16,6 @@ module.exports = function (spawn) {
     if (spawn.canCreateCreep(body, name) == OK) {
         spawn.createCreep(body, name, memory);
         spawn.memory.warriors.push(name);
-        Memory.statistics.military = Memory.statistics.military + Game.creeps[creep].getCost();
+        Memory.statistics.military = Memory.statistics.military + getCreepCost(body);
     }
 }

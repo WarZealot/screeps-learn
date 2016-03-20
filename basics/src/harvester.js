@@ -8,6 +8,8 @@
  * You can import it from another modules like this:
  * var mod = require('harvester'); // -> 'a thing'
  */
+var getCreepCost = require('creepCostCalculator');
+
 module.exports = function (spawn, source) {
     var type = 'harvester';
     var body = [MOVE, MOVE, WORK, CARRY];
@@ -21,6 +23,7 @@ module.exports = function (spawn, source) {
     if (spawn.canCreateCreep(body, name) == OK) {
         spawn.createCreep(body, name, memory);
         spawn.memory.harvesters.push(name);
-        Memory.statistics.economy = Memory.statistics.economy + Game.creeps[creep].getCost();
+        var cost = getCreepCost(body);
+        Memory.statistics.economy = Memory.statistics.economy + cost;
     }
 }
