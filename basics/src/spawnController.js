@@ -16,6 +16,9 @@ module.exports = function (spawn) {
         //create military
         warrior(spawn);
 
+    } else if (Memory.statistics.infrastructure < 3 * Memory.statistics.military) {
+        //create infrastructure
+        builder(spawn);
     } else {
         //create economy
         var sources = spawn.room.find(FIND_SOURCES);
@@ -24,6 +27,10 @@ module.exports = function (spawn) {
             if (isSatisfied(source)) {
                 continue;
             }
+            if (isEndangered(source)) {
+                continue;
+            }
+
             harvester(spawn, source);
             return;
         }
@@ -42,7 +49,7 @@ module.exports = function (spawn) {
         var distance = getDistance(source);
 
         //very simple logic
-        if (harvesters.length >= (adjacent + (distance-1) / 4)) {
+        if (harvesters.length >= (adjacent + (distance - 1) / 4)) {
             Memory.sources.satisfied.push(source.id);
             return true;
         }
@@ -80,5 +87,13 @@ module.exports = function (spawn) {
 
     function getDistance(source) {
         return source.pos.getRangeTo(spawn.pos);
+    }
+
+    function isEndangered(source) {
+        var enemies = source.pos.findInRange(FIND_HOSTILE_CREEPS, 3);
+        if (enemies.length > 0) {
+            return true;
+        }
+        return false;
     }
 }

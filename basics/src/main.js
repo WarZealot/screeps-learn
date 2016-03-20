@@ -3,11 +3,12 @@
  */
 
 var initGlobalMethods = require('globalMethods');
+var evaluateDeathsAndBirths = require('evaluatorDeathBirth');
+var Constants = require('Constants');
 
-var harvesterController = require('harvesterController');
+
 var spawnController = require('spawnController');
-var builderController = require('builderController');
-var warriorController = require('warriorController');
+var creepController = require('creepController');
 var constructionSiteChooser = require('constructionSiteChooser');
 
 module.exports.loop = function () {
@@ -19,11 +20,7 @@ module.exports.loop = function () {
     
     //needs to be done every tick
     initGlobalMethods();
-    for(var i in Memory.creeps) {
-        if(!Game.creeps[i]) {
-            delete Memory.creeps[i];
-        }
-    }
+    evaluateDeathsAndBirths();
 
     for (var name in Game.rooms) {
         var room = Game.rooms[name];
@@ -37,21 +34,6 @@ module.exports.loop = function () {
 
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if (creep.almostDead()) {
-            continue;
-        }
-
-        if (creep.memory.role == 'harvester') {
-            harvesterController(creep);
-        }
-
-        if (creep.memory.role == 'builder') {
-            builderController(creep);
-        }
-
-        if (creep.memory.role == 'warrior') {
-            warriorController(creep);
-        }
-
+        creepController(creep);
     }
 }

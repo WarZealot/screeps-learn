@@ -10,15 +10,18 @@
  */
 
 var getCreepCost = require('creepCostCalculator');
+var Constants = require('Constants');
+
 module.exports = function (spawn) {
-    var type = 'builder';
+    var type = Constants.ROLE_BUILDER;
     var body = [WORK, CARRY, WORK, MOVE];
     var name = spawn.name + "_" + type + "_" + spawn.memory.builders.length;
-    var memory = {role: type, creatorName: spawn.name};
+    var cost = getCreepCost(body);
+    var memory = {role: type, creatorName: spawn.name, cost: cost};
 
     if (spawn.canCreateCreep(body, name) == OK) {
         spawn.createCreep(body, name, memory);
         spawn.memory.builders.push(name);
-        Memory.statistics.infrastructure = Memory.statistics.infrastructure + getCreepCost(body);
-    } 
+        Memory.statistics.infrastructure = Memory.statistics.infrastructure + cost;
+    }
 }

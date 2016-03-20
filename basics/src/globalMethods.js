@@ -4,25 +4,6 @@
 var Constants = require('Constants');
 module.exports = function () {
     //extend creeps
-    Creep.prototype.almostDead = function () {
-        if (this.ticksToLive == 1) {
-            var array = [];
-            if (this.type == 'harvester') {
-                array = Memory.spawns[this.memory.creatorName].harvesters;
-            } else if (this.type == 'builder') {
-                array = Memory.spawns[this.memory.creatorName].builders;
-            } else if (this.type == 'warrior') {
-                array = Memory.spawns[this.memory.creatorName].warriors;
-            }
-            var index = array.indexOf(this.name);
-            if (index > -1) {
-                array.splice(index, 1);
-            }
-            this.suicide();
-            return true;
-        }
-        return false;
-    };
 
     /**Renew this creep if near creator and enough energy in creator.*/
     Creep.prototype.extendLife = function () {
@@ -34,6 +15,7 @@ module.exports = function () {
         }
     }
 
+    //TODO: Refactor into current cost if considered with all missing body parts and time to live
     Creep.prototype.getCost = function () {
         var sum = 0;
         for (var i = 0; i < this.body.length; i++) {

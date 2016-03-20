@@ -9,12 +9,14 @@
  * var mod = require('harvester'); // -> 'a thing'
  */
 var getCreepCost = require('creepCostCalculator');
+var Constants = require('Constants');
 
 module.exports = function (spawn, source) {
-    var type = 'harvester';
+    var type = Constants.ROLE_HARVESTER;
     var body = [MOVE, WORK, CARRY, MOVE];
     var name = spawn.name + "_" + type + "_" + spawn.memory.harvesters.length;
-    var memory = {role: type, creatorName: spawn.name, sourceId: source.id};
+    var cost = getCreepCost(body);
+    var memory = {role: type, creatorName: spawn.name, sourceId: source.id, cost: cost};
 
     while (spawn.canCreateCreep(body, name) == ERR_NAME_EXISTS) {
         name += '0';
@@ -23,7 +25,6 @@ module.exports = function (spawn, source) {
     if (spawn.canCreateCreep(body, name) == OK) {
         spawn.createCreep(body, name, memory);
         spawn.memory.harvesters.push(name);
-        var cost = getCreepCost(body);
-        Memory.statistics.economy = Memory.statistics.economy + cost;
+        Memory.statistics.economy += cost;
     }
 }

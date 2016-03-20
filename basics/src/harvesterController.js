@@ -19,9 +19,7 @@ module.exports = function (creep) {
     }
     else {
         var target = Game.spawns[creep.memory.creatorName];
-        if (creep.transfer(target, RESOURCE_ENERGY) == OK) {
-            creep.extendLife();
-        } else {
+        if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(target);
         }
     }

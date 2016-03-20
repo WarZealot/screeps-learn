@@ -10,5 +10,8 @@
  */
 
 module.exports = {
-    NOT_NEEDED: 700
+    NOT_NEEDED: 700,
+    ROLE_WARRIOR: 'warrior',
+    ROLE_HARVESTER: 'harvester',
+    ROLE_BUILDER: 'builder'
 }
