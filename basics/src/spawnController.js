@@ -42,9 +42,7 @@ module.exports = function (spawn) {
         var distance = getDistance(source);
 
         //very simple logic
-        console.log("Required harvesters: " + (adjacent + distance / 3));
-        console.log("Currently: " + harvesters.length);
-        if (harvesters.length >= (adjacent + distance / 3)) {
+        if (harvesters.length >= (adjacent + (distance-1) / 4)) {
             Memory.sources.satisfied.push(source.id);
             return true;
         }
@@ -62,7 +60,7 @@ module.exports = function (spawn) {
                 var pos = new RoomPosition(sX + i, sY + j, sName);
                 var terrain = pos.lookFor("terrain");
 
-                if (terrain.length && terrain[0] == "plain") {
+                if (terrain == "plain") {
                     sum++;
                 }
             }

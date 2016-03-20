@@ -10,7 +10,14 @@
  */
 module.exports = function (creep) {
     if (creep.memory.role == 'warrior') {
-        var targets = creep.room.find(FIND_HOSTILE_CREEPS);
+        var targets = creep.room.find(FIND_HOSTILE_CREEPS, {
+            filter: function (enemy) {
+                if (enemy.owner.username == 'Source Keeper'){
+                    return false;
+                }
+                return true;
+            }
+        });
         if (targets.length) {
             if (creep.attack(targets[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(targets[0]);
