@@ -10,7 +10,7 @@
  */
 module.exports = function (spawn) {
     var type = 'harvester';
-    var body = [MOVE, WORK, CARRY];
+    var body = [MOVE, MOVE, WORK, CARRY];
     var name = spawn.name + "_" + type + "_" + spawn.memory.harvesters.length;
     var memory = {role: type, creatorName: spawn.name};
 

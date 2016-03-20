@@ -9,7 +9,6 @@
  * var mod = require('harvester'); // -> 'a thing'
  */
 module.exports = function (creep) {
-
     if(creep.carry.energy < creep.carryCapacity) {
         var sources = creep.room.find(FIND_SOURCES);
         if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {

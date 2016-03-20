@@ -2,12 +2,18 @@
  * Created by Konstantin on 18.03.2016.
  */
 
+var globalMethods = require('globalMethods');
+
 var harvesterController = require('harvesterController');
 var spawnController = require('spawnController');
 var builderController = require('builderController');
 var constructionSiteChooser = require('constructionSiteChooser');
 
 module.exports.loop = function () {
+    if(!Memory.globalsInitialized){
+        globalMethods();
+        Memory.globalsInitialized = true;
+    }
 
     for(var name in Game.rooms) {
         var room = Game.rooms[name];
@@ -21,6 +27,9 @@ module.exports.loop = function () {
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
+        if (creep.almostDead()){
+            continue;
+        }
 
         if(creep.memory.role == 'harvester') {
             harvesterController(creep);
