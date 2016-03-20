@@ -12,7 +12,7 @@ module.exports = function (spawn, source) {
     var type = 'harvester';
     var body = [MOVE, MOVE, WORK, CARRY];
     var name = spawn.name + "_" + type + "_" + spawn.memory.harvesters.length;
-    var memory = {role: type, creatorName: spawn.name, sourceName: source.name};
+    var memory = {role: type, creatorName: spawn.name, sourceId: source.id};
 
     while (spawn.canCreateCreep(body, name) == ERR_NAME_EXISTS) {
         name += '0';

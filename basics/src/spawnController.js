@@ -32,7 +32,7 @@ module.exports = function (spawn) {
 
     /**Check, whether the source is satisfied.*/
     function isSatisfied(source) {
-        if (Memory.sources.satisfied.indexOf(source.name) > -1) {
+        if (Memory.sources.satisfied.indexOf(source.id) > -1) {
             return true;
         }
         //consider distance to spawn, amount of harvesters(Move, Work, Carry), amount of adjacent places
@@ -42,7 +42,7 @@ module.exports = function (spawn) {
 
         //very simple logic
         if (harvesters.length >= adjacent + distance / 3) {
-            Memory.sources.satisfied.push(source.name);
+            Memory.sources.satisfied.push(source.id);
             return true;
         }
         return false;
@@ -54,8 +54,8 @@ module.exports = function (spawn) {
         var sName = source.room.name;
         var sum = 0;
 
-        for (i = -1; i <= 1; i++) {
-            for (j = -1; j <= 1; j++) {
+        for (var i = -1; i <= 1; i++) {
+            for (var j = -1; j <= 1; j++) {
                 var pos = new RoomPosition(sX + i, sY + j, sName);
                 var terrain = pos.lookFor("terrain");
 
@@ -69,7 +69,7 @@ module.exports = function (spawn) {
 
     function getHarvesters(source) {
         var harvesters = spawn.memory.harvesters.filter(function (harvesterName) {
-            if (Memory.creeps[harvesterName].sourceName = source.name) {
+            if (Memory.creeps[harvesterName].sourceId = source.id) {
                 return true;
             }
             return false;
