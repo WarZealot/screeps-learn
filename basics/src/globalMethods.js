@@ -1,6 +1,7 @@
 /**
  * Created by Konstantin on 20.03.2016.
  */
+var Constants = require('Constants');
 module.exports = function () {
     //extend creeps
     Creep.prototype.almostDead = function () {
@@ -29,7 +30,7 @@ module.exports = function () {
             var spawn = Game.spawns[this.memory.creatorName];
             return spawn.renewCreep(this);
         } else {
-            return NOT_NEEDED;
+            return Constants.NOT_NEEDED;
         }
     }
 
