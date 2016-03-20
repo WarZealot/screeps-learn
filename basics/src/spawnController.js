@@ -12,7 +12,7 @@ module.exports = function (spawn) {
 
     var sources = spawn.room.find(FIND_SOURCES);
     for (var id in sources) {
-        source = source[id];
+        var source = source[id];
     }
 
 
