@@ -4,8 +4,6 @@
 
 var initGlobalMethods = require('globalMethods');
 var evaluateDeathsAndBirths = require('evaluatorDeathBirth');
-var Constants = require('Constants');
-
 
 var spawnController = require('spawnController');
 var creepController = require('creepController');

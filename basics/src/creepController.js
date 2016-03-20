@@ -5,6 +5,8 @@ var builderController = require('builderController');
 var warriorController = require('warriorController');
 var harvesterController = require('harvesterController');
 
+var Constants = require('Constants');
+
 module.exports = function (creep) {
     creep.extendLife();
 
