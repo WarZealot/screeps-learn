@@ -1,8 +1,8 @@
 /**
  * Created by Konstantin on 18.03.2016.
  */
-var harvester = require('model/harvester');
-var builder = require('model/builder');
+var harvester = require('harvester');
+var builder = require('builder');
 
 module.exports = function (spawn) {
     if (spawn.memory.harvesters == undefined) {
