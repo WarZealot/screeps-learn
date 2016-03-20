@@ -7,6 +7,7 @@ var initGlobalMethods = require('globalMethods');
 var harvesterController = require('harvesterController');
 var spawnController = require('spawnController');
 var builderController = require('builderController');
+var warriorController = require('warriorController');
 var constructionSiteChooser = require('constructionSiteChooser');
 
 module.exports.loop = function () {
@@ -41,6 +42,10 @@ module.exports.loop = function () {
 
         if (creep.memory.role == 'builder') {
             builderController(creep);
+        }
+
+        if (creep.memory.role == 'warrior') {
+            warriorController(creep);
         }
 
     }

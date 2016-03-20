@@ -19,8 +19,8 @@ module.exports = function (spawn) {
     }
 
     if (spawn.canCreateCreep(body, name) == OK) {
-        var creep = spawn.createCreep(body, name, memory);
-        spawn.memory.warriors.push(creep.name);
-        Memory.statistics.military = Memory.statistics.military + creep.getCost();
+        spawn.createCreep(body, name, memory);
+        spawn.memory.warriors.push(name);
+        Memory.statistics.military = Memory.statistics.military + Game.creeps[creep].getCost();
     }
 }

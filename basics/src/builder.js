@@ -15,7 +15,8 @@ module.exports = function (spawn) {
     var memory = {role: type, creatorName: spawn.name};
 
     if (spawn.canCreateCreep(body, name) == OK) {
-        var creep = spawn.createCreep(body, name, memory);
-        spawn.memory.builders.push(creep.name);
+        spawn.createCreep(body, name, memory);
+        spawn.memory.builders.push(name);
+        Memory.statistics.infrastructure = Memory.statistics.infrastructure + Game.creeps[creep].getCost();
     } 
 }

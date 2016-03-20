@@ -10,7 +10,7 @@
  */
 module.exports = function (creep) {
     if (creep.carry.energy < creep.carryCapacity) {
-        var source = Game.getObjectById(creep.memory.sourceName);
+        var source = Game.getObjectById(creep.memory.sourceId);
         if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
             creep.moveTo(source);
         } else if (creep.harvest(source) == ERR_INVALID_TARGET) {

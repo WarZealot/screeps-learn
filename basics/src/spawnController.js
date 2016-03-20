@@ -3,6 +3,7 @@
  */
 var harvester = require('harvester');
 var builder = require('builder');
+var warrior = require('warrior');
 
 module.exports = function (spawn) {
     if (spawn.memory.harvesters == undefined) {
@@ -13,7 +14,7 @@ module.exports = function (spawn) {
 
     if (Memory.statistics.economy >= 500 && Memory.statistics.economy > 2 * Memory.statistics.military) {
         //create military
-
+        warrior(spawn);
 
     } else {
         //create economy
