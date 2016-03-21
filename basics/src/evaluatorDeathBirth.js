@@ -22,7 +22,7 @@ module.exports = function () {
                 Memory.statistics.infrastructure -= cost;
             } else if (role == Constants.ROLE_WARRIOR) {
                 array = Memory.spawns[creepMemory.creatorName].warriors;
-                Memory.statistics.infrastructure -= cost;
+                Memory.statistics.military -= cost;
             }
             var index = array.indexOf(name);
             if (index > -1) {

@@ -8,22 +8,40 @@
  * You can import it from another modules like this:
  * var mod = require('harvester'); // -> 'a thing'
  */
-module.exports = function (creep) {
-    if (creep.memory.role == 'warrior') {
+var Constants = require('Constants');
+
+module.exports = function () {
+    for (var name in Game.spawns) {
+        var warriors = Memory.spawns[name].warriors;
+        if (warriors.length == 0) {
+            continue;
+        }
+
         var targets = creep.room.find(FIND_HOSTILE_CREEPS, {
             filter: function (enemy) {
-                if (enemy.owner.username == 'Source Keeper'){
+                if (enemy.owner.username == Constants.NAME_SOURCE_KEEPER) {
                     return false;
                 }
                 return true;
             }
         });
-        if (targets.length) {
-            if (creep.attack(targets[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(targets[0]);
+
+        for (var wName in warriors) {
+            var creep = Game.getObjectById(wName);
+
+            if (creep.memory.role != Constants.ROLE_WARRIOR) {
+                continue;
             }
-        } else {
-            creep.moveTo(Game.spawns[creep.memory.creatorName]);
+            if (targets.length) {
+                var closest = creep.pos.findClosestByPath(targets);
+
+                if (creep.attack(closest) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(closest);
+                }
+            } else {
+                //TODO select staging ground
+                creep.moveTo(25, 25);
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ var Constants = require('Constants');
 
 module.exports = function (spawn, source) {
     var type = Constants.ROLE_HARVESTER;
-    var body = [MOVE, WORK, CARRY, MOVE];
+    var body = [MOVE, CARRY, WORK, CARRY, MOVE];
     var name = spawn.name + "_" + type + "_" + spawn.memory.harvesters.length;
     var cost = getCreepCost(body);
     var memory = {role: type, creatorName: spawn.name, sourceId: source.id, cost: cost};

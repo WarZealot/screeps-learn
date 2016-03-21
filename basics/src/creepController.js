@@ -7,18 +7,10 @@ var harvesterController = require('harvesterController');
 
 var Constants = require('Constants');
 
-module.exports = function (creep) {
-    creep.extendLife();
-
-    if (creep.memory.role == Constants.ROLE_HARVESTER) {
-        harvesterController(creep);
-    }
-
-    if (creep.memory.role == Constants.ROLE_BUILDER) {
-        builderController(creep);
-    }
-
-    if (creep.memory.role == Constants.ROLE_WARRIOR) {
-        warriorController(creep);
-    }
+module.exports = function () {
+    //creep.extendLife(); TODO
+    
+    harvesterController();
+    warriorController();
+    builderController();
 }

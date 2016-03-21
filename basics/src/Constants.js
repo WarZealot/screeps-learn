@@ -10,8 +10,14 @@
  */
 
 module.exports = {
+    //Error codes
     NOT_NEEDED: 700,
+
+    //Roles
     ROLE_WARRIOR: 'warrior',
     ROLE_HARVESTER: 'harvester',
-    ROLE_BUILDER: 'builder'
+    ROLE_BUILDER: 'builder',
+
+    //Names
+    NAME_SOURCE_KEEPER:'Source Keeper'
 }

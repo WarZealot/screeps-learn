@@ -9,20 +9,37 @@
  * var mod = require('harvester'); // -> 'a thing'
  */
 module.exports = function (creep) {
-
-    if(creep.carry.energy == 0) {
-        var target = Game.spawns[creep.memory.creatorName];
-        if(target.transferEnergy(creep) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target);
+    for (var name in Game.spawns) {
+        var builders = Memory.spawns[name].builders;
+        if (builders.length == 0) {
+            continue;
         }
-    }
-    else {
+
         var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-        if(targets.length) {
-            if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(targets[0]);
+
+        for (var wName in builders) {
+            var creep = Game.getObjectById(wName);
+
+            if (creep.memory.role != Constants.ROLE_BUILDER) {
+                continue;
+            }
+            if (creep.carry.energy == 0) {
+                var target = Game.spawns[creep.memory.creatorName];
+                if (target.transferEnergy(creep) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(target);
+                }
+            }
+            else {
+                if (targets.length) {
+                    //TODO select optimal target
+                    if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(targets[0]);
+                    }
+                }
             }
         }
     }
+
+
 }
 
