@@ -20,7 +20,7 @@ module.exports = function (creep) {
         for (var wName in builders) {
             var creep = Game.getObjectById(wName);
 
-            if (creep.spawning || creep.memory.role != Constants.ROLE_BUILDER) {
+            if (creep == null || creep.memory.role != Constants.ROLE_BUILDER) {
                 continue;
             }
             if (creep.carry.energy == 0) {

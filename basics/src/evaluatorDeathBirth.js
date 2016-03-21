@@ -23,6 +23,9 @@ module.exports = function () {
             } else if (role == Constants.ROLE_WARRIOR) {
                 array = Memory.spawns[creepMemory.creatorName].warriors;
                 Memory.statistics.military -= cost;
+            } else if (role == Constants.ROLE_HEALER){
+                array = Memory.spawns[creepMemory.creatorName].healers;
+                Memory.statistics.military -= cost;
             }
             var index = array.indexOf(name);
             if (index > -1) {

@@ -12,30 +12,30 @@ var Constants = require('Constants');
 
 module.exports = function () {
     for (var name in Game.spawns) {
-        var warriors = Memory.spawns[name].warriors;
-        if (warriors.length == 0) {
+        var healers = Memory.spawns[name].healers;
+        if (healers.length == 0) {
             continue;
         }
 
-        var targets = creep.room.find(FIND_HOSTILE_CREEPS, {
-            filter: function (enemy) {
-                if (enemy.owner.username == Constants.NAME_SOURCE_KEEPER) {
-                    return false;
-                }
+        var targets = Game.creeps.filter(function (creep) {
+            if (creep.hits < creep.hitsMax) {
                 return true;
             }
+            return false;
         });
+        if (targets.length == 0) {
+            continue;
+        }
 
-        for (var wName in warriors) {
-            var creep = Game.getObjectById(wName);
+        for (var hName in healers) {
+            var creep = Game.getObjectById(hName);
 
-            if (creep == null || creep.memory.role != Constants.ROLE_WARRIOR) {
+            if (creep == null || creep.memory.role != Constants.ROLE_HEALER) {
                 continue;
             }
             if (targets.length) {
                 var closest = creep.pos.findClosestByPath(targets);
-
-                if (creep.attack(closest) == ERR_NOT_IN_RANGE) {
+                if (creep.heal(closest) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(closest);
                 }
             } else {

@@ -9,6 +9,7 @@
  * var mod = require('harvester'); // -> 'a thing'
  */
 module.exports = function (room) {
+    return;
     if(room.memory.roadsChosen){
         return;
     }

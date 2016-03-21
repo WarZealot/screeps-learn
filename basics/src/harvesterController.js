@@ -1,20 +1,15 @@
 /**
  * Created by Konstantin on 18.03.2016.
  */
-/*
- * Module code goes here. Use 'module.exports' to export things:
- * module.exports = 'a thing';
- *
- * You can import it from another modules like this:
- * var mod = require('harvester'); // -> 'a thing'
- */
+var Constants = require('Constants');
+
 module.exports = function () {
     for (var name in Game.spawns) {
         var harvesterNames = Memory.spawns[name].harvesters;
 
         for (var hName in harvesterNames) {
             var creep = Game.getObjectById(hName);
-            if (creep.spawning) {
+            if (creep == null || creep.memory.role != Constants.ROLE_HARVESTER) {
                 continue;
             }
 

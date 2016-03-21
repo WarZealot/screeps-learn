@@ -10,3 +10,10 @@ construct roads only to satisfied sources
 construct road to controller
 add logic so that warriors attack closest creep     DONE
 add healers
+add type (military, economy, etc.) to memory
+
+
+
+
+Long term
+Interface for interaction with api - find() etc. only call once

@@ -17,6 +17,7 @@ module.exports = {
     ROLE_WARRIOR: 'warrior',
     ROLE_HARVESTER: 'harvester',
     ROLE_BUILDER: 'builder',
+    ROLE_HEALER: 'healer',
 
     //Names
     NAME_SOURCE_KEEPER:'Source Keeper'
