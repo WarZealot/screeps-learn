@@ -27,10 +27,10 @@ module.exports = function () {
             continue;
         }
 
-        for (var hName in healers) {
-            var creep = Game.getObjectById(hName);
+        for (var i in healers) {
+            var creep = Game.getObjectById(healers[i]);
 
-            if (creep == null || creep.memory.role != Constants.ROLE_HEALER) {
+            if (creep == null || creep.spawning || creep.memory.role != Constants.ROLE_HEALER) {
                 continue;
             }
             if (targets.length) {

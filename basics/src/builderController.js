@@ -17,10 +17,10 @@ module.exports = function (creep) {
 
         var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 
-        for (var wName in builders) {
-            var creep = Game.getObjectById(wName);
+        for (var i in builders) {
+            var creep = Game.getObjectById(builders[i]);
 
-            if (creep == null || creep.memory.role != Constants.ROLE_BUILDER) {
+            if (creep == null || creep.spawning || creep.memory.role != Constants.ROLE_BUILDER) {
                 continue;
             }
             if (creep.carry.energy == 0) {

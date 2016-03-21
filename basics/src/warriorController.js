@@ -26,8 +26,8 @@ module.exports = function () {
             }
         });
 
-        for (var wName in warriors) {
-            var creep = Game.getObjectById(wName);
+        for (var i in warriors) {
+            var creep = Game.getObjectById(warriors[i]);
 
             if (creep == null || creep.memory.role != Constants.ROLE_WARRIOR) {
                 continue;

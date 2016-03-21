@@ -7,9 +7,9 @@ module.exports = function () {
     for (var name in Game.spawns) {
         var harvesterNames = Memory.spawns[name].harvesters;
 
-        for (var hName in harvesterNames) {
-            var creep = Game.getObjectById(hName);
-            if (creep == null || creep.memory.role != Constants.ROLE_HARVESTER) {
+        for (var i in harvesterNames) {
+            var creep = Game.getObjectById(harvesterNames[i]);
+            if (creep == null || creep.spawning || creep.memory.role != Constants.ROLE_HARVESTER) {
                 continue;
             }
 
