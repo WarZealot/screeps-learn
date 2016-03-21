@@ -25,7 +25,7 @@ module.exports = function (spawn) {
         var sources = spawn.room.find(FIND_SOURCES);
         for (var id in sources) {
             var source = sources[id];
-            if (needsHarvester(source, spawn)) {
+            if (!needsHarvester(source, spawn)) {
                 continue;
             }
 

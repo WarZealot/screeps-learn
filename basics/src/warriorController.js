@@ -29,7 +29,7 @@ module.exports = function () {
         for (var wName in warriors) {
             var creep = Game.getObjectById(wName);
 
-            if (creep.memory.role != Constants.ROLE_WARRIOR) {
+            if (creep.spawning || creep.memory.role != Constants.ROLE_WARRIOR) {
                 continue;
             }
             if (targets.length) {

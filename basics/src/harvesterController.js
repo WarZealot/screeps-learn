@@ -14,6 +14,9 @@ module.exports = function () {
 
         for (var hName in harvesterNames) {
             var creep = Game.getObjectById(hName);
+            if (creep.spawning) {
+                continue;
+            }
 
             if (creep.carry.energy < creep.carryCapacity) {
                 var source = Game.getObjectById(creep.memory.sourceId);
