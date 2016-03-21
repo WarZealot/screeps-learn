@@ -17,7 +17,7 @@ module.exports = function () {
             continue;
         }
 
-        var targets = creep.room.find(FIND_HOSTILE_CREEPS, {
+        var targets = Game.spawns[name].room.find(FIND_HOSTILE_CREEPS, {
             filter: function (enemy) {
                 if (enemy.owner.username == Constants.NAME_SOURCE_KEEPER) {
                     return false;

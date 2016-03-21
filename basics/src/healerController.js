@@ -17,12 +17,13 @@ module.exports = function () {
             continue;
         }
 
-        var targets = Game.creeps.filter(function (creep) {
+        var targets = Game.spawns[name].room.find(FIND_MY_CREEPS).filter(function (creep) {
             if (creep.hits < creep.hitsMax) {
                 return true;
             }
             return false;
         });
+
         if (targets.length == 0) {
             continue;
         }
