@@ -28,7 +28,7 @@ module.exports = function () {
         }
 
         for (var i in healers) {
-            var creep = Game.creeps(healers[i]);
+            var creep = Game.creeps[healers[i]];
 
             if (creep == null || creep.spawning || creep.memory.role != Constants.ROLE_HEALER) {
                 continue;

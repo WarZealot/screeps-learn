@@ -18,7 +18,7 @@ module.exports = function (creep) {
         var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 
         for (var i in builders) {
-            var creep = Game.creeps(builders[i]);
+            var creep = Game.creeps[builders[i]];
 
             if (creep == null || creep.spawning || creep.memory.role != Constants.ROLE_BUILDER) {
                 continue;

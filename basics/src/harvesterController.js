@@ -8,7 +8,7 @@ module.exports = function () {
         var harvesterNames = Memory.spawns[name].harvesters;
 
         for (var i in harvesterNames) {
-            var creep = Game.creeps(harvesterNames[i]);
+            var creep = Game.creeps[harvesterNames[i]];
             if (creep == null || creep.spawning || creep.memory.role != Constants.ROLE_HARVESTER) {
                 continue;
             }
