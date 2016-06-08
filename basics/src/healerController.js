@@ -24,10 +24,6 @@ module.exports = function () {
             return false;
         });
 
-        if (targets.length == 0) {
-            continue;
-        }
-
         for (var i in healers) {
             var creep = Game.creeps[healers[i]];
 
